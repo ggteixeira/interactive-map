@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Home, PackageIcon, DoorOpen } from "lucide-react";
 
 import {
   Sidebar,
@@ -7,44 +7,43 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarFooter,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { ComboboxDemo } from "./sidebar-combobox";
 
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Página Inicial",
     url: "#",
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Produtos",
     url: "#",
-    icon: Inbox,
+    icon: PackageIcon,
   },
+];
+
+// Sidebar items
+const footerItems = [
   {
-    title: "Calendar",
+    title: "Sair",
     url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    icon: DoorOpen,
   },
 ];
 
 export function AppSidebar() {
   return (
     <Sidebar>
+      {/* Main items */}
       <SidebarContent>
         <SidebarGroup>
+          {/* Dropdown/Combobox component */}
+          <ComboboxDemo />
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -62,6 +61,26 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {/* Footer  */}
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarFooter>
+              {footerItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarFooter>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
     </Sidebar>
   );
 }
