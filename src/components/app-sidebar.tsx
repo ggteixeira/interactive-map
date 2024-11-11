@@ -11,18 +11,24 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
 import { ComboboxDemo } from "./sidebar-combobox";
 
 // Menu items.
 const items = [
   {
     title: "Página Inicial",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
     title: "Produtos",
-    url: "#",
+    url: "/products",
+    icon: PackageIcon,
+  },
+  {
+    title: "Greeting",
+    url: "/greeting",
     icon: PackageIcon,
   },
 ];
@@ -43,43 +49,49 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           {/* Dropdown/Combobox component */}
-          <ComboboxDemo />
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
+          <div style={{ marginBottom: "7.5rem" }}>
+            <ComboboxDemo />
+          </div>
+          <div>
+            <SidebarGroupLabel>Application</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </div>
         </SidebarGroup>
       </SidebarContent>
 
       {/* Footer  */}
       <SidebarGroup>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarFooter>
-              {footerItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarFooter>
-          </SidebarMenu>
-        </SidebarGroupContent>
+        <div>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarFooter>
+                {footerItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarFooter>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </div>
       </SidebarGroup>
     </Sidebar>
   );
